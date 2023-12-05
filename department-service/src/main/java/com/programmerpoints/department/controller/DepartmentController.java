@@ -38,10 +38,13 @@ public class DepartmentController {
         return  departmentRepository.findById(id);
     }
 
-    @GetMapping("with-employees")
+    @GetMapping("/with-employees")
     public List<Department> findAllWithEmployee(){
      LOGGER.info("Department find");
-        return departmentRepository.findAll();
+        List<Department> departments= departmentRepository.findAll();
+        departments.forEach(department -> department.setEmployees(
+                employeeClient.findByDepartment(department.getId())));
+        return departments;
         }
 
 

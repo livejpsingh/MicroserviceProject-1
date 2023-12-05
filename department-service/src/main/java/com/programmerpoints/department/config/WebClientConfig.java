@@ -13,8 +13,6 @@ import org.springframework.web.service.invoker.HttpServiceProxyFactory;
 public class WebClientConfig {
 
 
-
-
     @Autowired
     private LoadBalancedExchangeFilterFunction filterFunction;
 
@@ -27,6 +25,7 @@ public class WebClientConfig {
     }
 
 
+    @Bean
     public EmployeeClient employeeClient(){
         HttpServiceProxyFactory httpServiceProxyFactory
                 = HttpServiceProxyFactory.builder(WebClientAdapter.forClient(employeeWebClient()))
